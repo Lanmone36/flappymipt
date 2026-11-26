@@ -1,6 +1,6 @@
 import pygame as pg
 
-class Professor(pg.sprite.Sprite):
+class Bottle(pg.sprite.Sprite):
 
     def __init__(self):
         super().__init__()

@@ -1,4 +1,3 @@
-import random
 import pygame as pg
 from src.settings import SCREEN_WIDTH, SCREEN_HEIGHT
 
