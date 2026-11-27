@@ -1,8 +1,11 @@
 import pygame as pg
-
+from random import randint
 
 from src.settings import SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_CAPTION, SCREEN_BACKGROUND
 from src.settings import FPS
+from src.settings import PROF_MIN_SPAWN_TIME, PROF_MAX_SPAWN_TIME
+
+from src.timer import Timer
 
 from src.sprites.stird import Stird
 from src.sprites.professor import Professor
@@ -27,10 +30,8 @@ def main():
     stird = Stird()
     sprites.add(stird)
 
-    for _ in range(10):
-        professor = Professor()
-        sprites.add(professor)
-        professors.add(professor)
+    prof_spawn_timer = Timer()
+    prof_spawn_timer.start(randint(PROF_MAX_SPAWN_TIME - 1000, PROF_MAX_SPAWN_TIME))
 
     run = True
     while run:
@@ -39,6 +40,13 @@ def main():
                 run = False
 
             stird.handler(e)
+
+        if prof_spawn_timer.ready():
+            prof = Professor()
+            sprites.add(prof)
+            professors.add(prof)
+
+            prof_spawn_timer.start(randint(PROF_MIN_SPAWN_TIME, PROF_MAX_SPAWN_TIME))
 
         ##### UPDATING #####
         sprites.update()

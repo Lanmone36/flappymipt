@@ -28,6 +28,9 @@ PROFESSORS_IMAGES = [
 
 GAP = 50 #indentation from the edge of the screen where mobs are created
 
+PROF_MIN_SPAWN_TIME = 2000 #2 sec
+PROF_MAX_SPAWN_TIME = 5000 #5 sec
+
 
 ##### BOTTLES SETTINGS #####
 BOTTLES_IMAGE = "flappymipt/src/assets/..."
