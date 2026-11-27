@@ -12,9 +12,9 @@ FPS = 60
 INIT_POS = (SCREEN_WIDTH//4, SCREEN_HEIGHT//2)
 
 GRAVITY_BOOST = 0.5
-FLAP_SPEED = -9
+FLAP_SPEED = -9 #initial takeoff speed
 INIT_SPEED = 0
-MAX_SPEED = 12
+MAX_SPEED = 12 #maximum drop velocity
 
 STIRD_IMAGE = "flappymipt/src/assets/..."
 
@@ -25,6 +25,11 @@ PROFESSORS_IMAGES = [
     "flappymipt/src/assets/...",
     "flappymipt/src/assets/..."
     ]
+
+GAP = 50 #indentation from the edge of the screen where mobs are created
+
+PROF_MIN_SPAWN_TIME = 2000 #2 sec
+PROF_MAX_SPAWN_TIME = 5000 #5 sec
 
 
 ##### BOTTLES SETTINGS #####
