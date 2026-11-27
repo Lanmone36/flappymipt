@@ -3,7 +3,7 @@ from random import randint
 
 from src.settings import SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_CAPTION, SCREEN_BACKGROUND
 from src.settings import FPS
-from src.settings import PROF_MIN_SPAWN_TIME, PROF_MAX_SPAWN_TIME
+from src.settings import PROF_MIN_SPAWN_TIME, PROF_MAX_SPAWN_TIME, PROF_DELAY_SPAWN_TIME
 
 from src.timer import Timer
 
@@ -23,15 +23,15 @@ def main():
 
     clock = pg.time.Clock()
 
-    ##### Sprites #####
+    ##### SPRITES #####
     sprites = pg.sprite.Group()
-    professors = pg.sprite.Group()
+    professors = pg.sprite.Group() #it's needed to handle collisions with professors!
 
     stird = Stird()
     sprites.add(stird)
 
     prof_spawn_timer = Timer()
-    prof_spawn_timer.start(randint(PROF_MAX_SPAWN_TIME - 1000, PROF_MAX_SPAWN_TIME))
+    prof_spawn_timer.start(randint(PROF_MAX_SPAWN_TIME - PROF_DELAY_SPAWN_TIME, PROF_MAX_SPAWN_TIME))
 
     run = True
     while run:
@@ -39,20 +39,25 @@ def main():
             if e.type == pg.QUIT:
                 run = False
 
-            stird.handler(e)
+            ##### Stird's processing #####
+            if e.type == pg.KEYDOWN:
+                if e.key in (pg.K_SPACE, pg.K_UP):
+                    stird.flap()
+            if e.type == pg.MOUSEBUTTONDOWN and e.button == 1:
+                stird.flap()
 
-        if prof_spawn_timer.ready():
+        ##### UPDATING #####
+        if prof_spawn_timer.ready(): #spawning professors
             prof = Professor()
             sprites.add(prof)
             professors.add(prof)
-
+        
             prof_spawn_timer.start(randint(PROF_MIN_SPAWN_TIME, PROF_MAX_SPAWN_TIME))
-
-        ##### UPDATING #####
+        
         sprites.update()
 
         if pg.sprite.spritecollide(stird, professors, False):
-            pass
+            print("Touching prof!")
 
         ##### DRAWING #####
         screen.blit(background, (0, 0))

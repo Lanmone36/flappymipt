@@ -28,8 +28,11 @@ PROFESSORS_IMAGES = [
 
 GAP = 50 #indentation from the edge of the screen where mobs are created
 
+PROF_SPEED = 5
+
 PROF_MIN_SPAWN_TIME = 2000 #2 sec
-PROF_MAX_SPAWN_TIME = 5000 #5 sec
+PROF_MAX_SPAWN_TIME = 4000 #5 sec
+PROF_DELAY_SPAWN_TIME = 3000 #3 sec
 
 
 ##### BOTTLES SETTINGS #####

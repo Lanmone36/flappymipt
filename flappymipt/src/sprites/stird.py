@@ -23,15 +23,7 @@ class Stird(pg.sprite.Sprite):
     def flap(self):
         self.speed = FLAP_SPEED
 
-    def handler(self, event):
-        if event.type == pg.KEYDOWN and event.key == pg.K_SPACE:
-            self.flappy = True
-
     def update(self):
-        if self.flappy:
-            self.flap()
-            self.flappy = False
-        
         self.rect.y += self.speed
         if self.rect.top < 0 or self.rect.bottom > SCREEN_HEIGHT:
             self.rect.top = 0

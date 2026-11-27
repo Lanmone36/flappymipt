@@ -2,6 +2,8 @@ import pygame as pg
 from random import randint
 from src.settings import SCREEN_WIDTH, SCREEN_HEIGHT
 
+#добавить PROF_SPEED, указать постоянную скорость мобов.
+#добавить GAP, чтобы не было рандомных чисел (19 строка)
 
 class Professor(pg.sprite.Sprite):
 
@@ -14,7 +16,6 @@ class Professor(pg.sprite.Sprite):
         self.image.fill((255, 0, 0))
 
         self.rect = self.image.get_rect()
-
         self.rect.bottomleft = (SCREEN_WIDTH+50,randint(self.rect.height,SCREEN_HEIGHT))
 
         self.speed = randint(5,12)
@@ -22,6 +23,5 @@ class Professor(pg.sprite.Sprite):
     def update(self):
         self.rect.x -= self.speed
 
-    def draw(self, screen):
-        self.draw.rect(screen, (255,0,0), self.rect)
-
+        if self.rect.right <= 0: #going off-screen
+            self.kill() #cleaning up resources
